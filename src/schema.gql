@@ -1,0 +1,124 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Auth {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input AuthInput {
+  email: String!
+  password: String!
+}
+
+input AuthOtpInput {
+  email: String!
+  otp: String!
+}
+
+input ChangePasswordInput {
+  email: String!
+  password: String!
+  token: String!
+}
+
+type ChangePasswordStatus {
+  status: Boolean!
+}
+
+input CreateGenderInput {
+  gender: String!
+  lookingForGender: String!
+}
+
+input CreateIntroInput {
+  caption: String!
+  postDate: DateTime!
+  userName: String!
+  video: String!
+}
+
+input CreateUserInput {
+  email: String!
+  password: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type ForgetPasswordTokens {
+  accessToken: String!
+  token: String!
+}
+
+type Gender {
+  gender: String!
+}
+
+type GenerateOtp {
+  otp: String!
+}
+
+type Intro {
+  userName: String!
+}
+
+type Mutation {
+  changePassword(data: ChangePasswordInput!): ChangePasswordStatus!
+  createAdminUser(data: CreateUserInput!): User!
+  createAuth(createAuthInput: AuthInput!): Auth!
+  createGender(createGenderInput: CreateGenderInput!): Gender!
+  createIntro(createIntroInput: CreateIntroInput!): Intro!
+  createUser(data: CreateUserInput!): User!
+  forgetPassword(data: AuthOtpInput!): ForgetPasswordTokens!
+  generateOtp(data: String!): GenerateOtp!
+  loginUser(data: AuthInput!): Tokens!
+  refreshToken(token: String!): Tokens!
+  removeAuth(id: Int!): Auth!
+  removeUser(id: Int!): User!
+  resetPassword(data: AuthInput!): ResetPasswordToken!
+  updateAuth(updateAuthInput: UpdateAuthInput!): Auth!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+type Query {
+  auth(id: Int!): Auth!
+  gender: [Gender!]!
+  projects: [Intro!]!
+  user(email: String!): User!
+}
+
+type ResetPasswordToken {
+  token: String!
+}
+
+type Tokens {
+  accessToken: String!
+  refreshToken: String!
+}
+
+input UpdateAuthInput {
+  email: String
+  id: Int!
+  password: String
+}
+
+input UpdateUserInput {
+  email: String
+  id: Int!
+  password: String
+}
+
+type User {
+  email: String!
+  id: ID!
+  otp: String!
+  otpCreatedAt: String!
+  refreshToken: String!
+  token: String!
+  userType: String!
+  verifiedEmail: Boolean!
+}
